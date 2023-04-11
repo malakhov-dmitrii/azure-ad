@@ -70,3 +70,5 @@ export const getServerAuthSession = (ctx: {
 }) => {
   return getServerSession(ctx.req, ctx.res, authOptions);
 };
+
+// https://login.live.com/oauth20_authorize.srf?client_id=33dce5ac-b19a-41a7-8937-280d22cd1af9&scope=openid+offline_access+https%3a%2f%2fgraph.microsoft.com%2fmail.read&redirect_uri=https%3a%2f%2fazure-eqdfr2qxm-cskeleto.vercel.app&response_type=code&state=12345&response_mode=query&uaid=662729c08269458cb42c91d5ede5dc64&msproxy=1&issuer=mso&tenant=common&ui_locales=en-US&epct=PAQABAAEAAAD--DLA3VO7QrddgJg7Wevryw3v-hWQaI3NXAd99QwXrZRgHdwnJCRd61GGIMXeU74GH4DxNf9oxZiIeCGlbsquyn0KjdiazT7KWmI8XeZwbTLa_THz7hYwdxwX4--YCUVt1w3UlCCVO8DLpANpG_4AbTRgFFzppSVnmwRziRIJYiWGMXqmymBlU1b05sXUes1atZk_8SukbAeOjY_RnnPob8JIgAilTyIBEvaCCBWsCiAA&jshs=0
