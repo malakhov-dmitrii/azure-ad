@@ -205,6 +205,7 @@ const Home: NextPage = (props: {
           colorScheme="blue"
           onClick={() => void fetchUserServer()}
           disabled={!accessToken}
+          isLoading={userLoading}
         >
           Fetch User (Server)
         </Button>
@@ -231,6 +232,7 @@ const Home: NextPage = (props: {
         colorScheme="blue"
         onClick={() => void fetchRefreshToken()}
         disabled={!accessToken}
+        isLoading={tokenLoading}
       >
         Refresh Token
       </Button>
