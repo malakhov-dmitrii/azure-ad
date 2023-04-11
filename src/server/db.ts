@@ -19,6 +19,5 @@ import { Redis } from "@upstash/redis";
 
 export const redis = new Redis({
   url: "https://big-treefrog-30197.upstash.io",
-  token:
-    "AXX1ACQgODYwOWM0MzEtMTA0My00NjVmLWFkZTQtZjczM2NmMjY0ZWU2ZGVkMmRlMzdmYTI4NGEyZTgyZjk3YWM3MGFlZWQ0Yzk=",
+  token: process.env.UPSTASH_TOKEN,
 });

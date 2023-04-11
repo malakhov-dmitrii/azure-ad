@@ -7,6 +7,7 @@ import { z } from "zod";
 const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
   CLIENT_SECRET: z.string().min(1),
+  UPSTASH_TOKEN: z.string().min(1),
 });
 
 /**
@@ -26,6 +27,7 @@ const client = z.object({
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
   CLIENT_SECRET: process.env.CLIENT_SECRET,
+  UPSTASH_TOKEN: process.env.UPSTASH_TOKEN,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
