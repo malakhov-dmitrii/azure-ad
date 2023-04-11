@@ -8,9 +8,11 @@ import { useRouter } from "next/router";
 import QueryString from "qs";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { env } from "~/env.mjs";
 import { redis } from "~/server/db";
+import { getBaseUrl } from "~/utils/api";
 
-const authUri = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=33dce5ac-b19a-41a7-8937-280d22cd1af9&response_type=code&redirect_uri=http://localhost:3000&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345`;
+const authUri = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=33dce5ac-b19a-41a7-8937-280d22cd1af9&response_type=code&redirect_uri=${getBaseUrl()}&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345`;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -228,7 +230,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const data = QueryString.stringify({
     client_id: "33dce5ac-b19a-41a7-8937-280d22cd1af9",
     scope: "https://graph.microsoft.com/mail.read",
-    redirect_uri: "http://localhost:3000",
+    redirect_uri: getBaseUrl(),
     grant_type: "authorization_code",
     client_secret: process.env.CLIENT_SECRET,
     code,

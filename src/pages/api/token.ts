@@ -2,6 +2,7 @@ import axios from "axios";
 import { type NextApiHandler } from "next";
 import QueryString from "qs";
 import { redis } from "~/server/db";
+import { getBaseUrl } from "~/utils/api";
 
 const handler: NextApiHandler = async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
@@ -11,7 +12,7 @@ const handler: NextApiHandler = async (req, res) => {
   const data = QueryString.stringify({
     client_id: "33dce5ac-b19a-41a7-8937-280d22cd1af9",
     scope: "https://graph.microsoft.com/mail.read",
-    redirect_uri: "http://localhost:3000",
+    redirect_uri: getBaseUrl(),
     grant_type: "refresh_token",
     client_secret: process.env.CLIENT_SECRET,
     refresh_token: refreshToken,
