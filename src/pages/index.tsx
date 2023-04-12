@@ -20,7 +20,8 @@ import { env } from "~/env.mjs";
 import { redis } from "~/server/db";
 import { getBaseUrl } from "~/utils/api";
 
-const authUri = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=33dce5ac-b19a-41a7-8937-280d22cd1af9&response_type=code&redirect_uri=${getBaseUrl()}&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345`;
+const authUri = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=33dce5ac-b19a-41a7-8937-280d22cd1af9&response_type=code&redirect_uri=${getBaseUrl()}&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345&prompt=select_account`;
+const logoutUri = `https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https://azure-ad.vercel.app`;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -141,6 +142,14 @@ const Home: NextPage = (props: {
     }
   }, []);
 
+  const clearStorage = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setAccessToken("");
+    setRefreshToken("");
+    setUser({});
+    window.location.reload();
+  };
   return (
     <>
       <Head>
@@ -167,20 +176,26 @@ const Home: NextPage = (props: {
           </Link>
         )}
         {accessToken && (
-          <Button
-            variant={"outline"}
-            colorScheme="blue"
-            onClick={() => {
-              localStorage.removeItem("accessToken");
-              localStorage.removeItem("refreshToken");
-              setAccessToken("");
-              setRefreshToken("");
-              setUser({});
-              window.location.reload();
-            }}
-          >
-            Sign Out
-          </Button>
+          <>
+            <Button
+              variant={"outline"}
+              colorScheme="blue"
+              onClick={clearStorage}
+            >
+              Reset Stored Tokens
+            </Button>
+            <Button
+              ml={2}
+              variant={"outline"}
+              colorScheme="blue"
+              onClick={() => {
+                clearStorage();
+                window.location.href = logoutUri;
+              }}
+            >
+              Sign Out
+            </Button>
+          </>
         )}
       </Flex>
 
