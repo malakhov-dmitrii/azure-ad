@@ -20,7 +20,7 @@ import { env } from "~/env.mjs";
 import { redis } from "~/server/db";
 import { getBaseUrl } from "~/utils/api";
 
-const authUri = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=33dce5ac-b19a-41a7-8937-280d22cd1af9&response_type=code&redirect_uri=${getBaseUrl()}&response_mode=query&scope=profile%20%20User.Read%20openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345&prompt=select_account`;
+const authUri = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=33dce5ac-b19a-41a7-8937-280d22cd1af9&response_type=code&redirect_uri=${getBaseUrl()}&response_mode=query&scope=profile%20%20User.Read%20openid%20offline_access&state=12345&prompt=select_account`;
 const logoutUri = `https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https://azure-ad.vercel.app`;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
